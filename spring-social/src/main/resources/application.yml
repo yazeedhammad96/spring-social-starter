@@ -1,0 +1,94 @@
+server:
+  port: 8089
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+  mail:
+    host: smtp.erabia.com
+    port: 587
+    username: yazeed.hammad@erabia.com
+    password: QWEasd6767449*-
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+            required: true
+          auth: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+  datasource:
+    url: jdbc:mysql://localhost:3306/test_spring_security?useSSL=false
+    username: root
+    continue-on-error: true
+    password: 123123
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 5014057553-8gm9um6vnli3cle5rgigcdjpdrid14m9.apps.googleusercontent.com
+            clientSecret: tWZKVLxaD_ARWsriiiUFYoIk
+            redirectUriTemplate: '{baseUrl}/oauth2/callback/{registrationId}'
+            scope:
+            - email
+            - profile
+          linkedin:
+            clientId: 77smtc5d5vlp8h
+            client-secret: z8XUdbKOKoSrPWuq
+            redirect-uri: '{baseUrl}/oauth2/callback/{registrationId}'
+            authorization-grant-type: authorization_code
+            client-authentication-method: form
+            scope:
+            - r_basicprofile
+            - r_emailaddress
+          facebook:
+            clientId: 121189305185277
+            clientSecret: 42ffe5aa7379e8326387e0fe16f34132
+            redirectUriTemplate: '{baseUrl}/oauth2/callback/{registrationId}'
+            scope:
+            - email
+            - public_profile
+          github:
+            clientId: d3e47fc2ddd966fa4352
+            clientSecret: 3bc0f6b 8332f93076354c2a5bada2f5a05aea60d
+            redirectUriTemplate: '{baseUrl}/oauth2/callback/{registrationId}'
+            scope:
+            - user:email
+            - read:user
+    
+        provider:
+          facebook:
+            authorizationUri: https://www.facebook.com/v3.0/dialog/oauth
+            tokenUri: https://graph.facebook.com/v3.0/oauth/access_token
+            userInfoUri: https://graph.facebook.com/v3.0/me?fields=id,first_name,middle_name,last_name,name,email,verified,is_verified,picture.width(250).height(250)
+          linkedin:
+            authorizationUri: https://www.linkedin.com/oauth/v2/authorization
+            tokenUri: https://www.linkedin.com/oauth/v2/accessToken
+            userInfoUri: https://api.linkedin.com/v1/people/~?format=json
+            
+            
+            
+app:
+  auth:
+    tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
+    tokenExpirationMsec: 864000000
+  oauth2:
+    authorizedRedirectUris:
+    - http://localhost:3000/oauth2/redirect
+    - https://www.callicoder.com/spring-boot-security-oauth2-social-login-part-3/
+    - myandroidapp://oauth2/redirect
+    - myiosapp://oauth2/redirect
